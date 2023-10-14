@@ -48,4 +48,4 @@ provision:
     curl --location https://github.com/fwilhe2/system-automation/archive/main.zip -o ${tmp_dir}/sysauto.zip
     unzip ${tmp_dir}/sysauto.zip -d ${tmp_dir}/extract
     ansible-galaxy install -r ${tmp_dir}/extract/system-automation-main/requirements.yml
-    ansible-playbook --skip-tags=virtualization --inventory ${tmp_dir}/extract/system-automation-main/inventory ${tmp_dir}/extract/system-automation-main/common.yml
+    ansible-playbook -e "username=florian.linux" --inventory ${tmp_dir}/extract/system-automation-main/inventory ${tmp_dir}/extract/system-automation-main/dev-env.yml
