@@ -7,7 +7,6 @@ LABEL com.github.containers.toolbox="true" \
       name="$NAME" \
       version="$VERSION" \
       usage="This image is meant to be used with the toolbox command" \
-      maintainer="Debarshi Ray <rishi@fedoraproject.org>" \
       summary="Florian's Fedora Dev Image based on the work by Debarshi Ray <rishi@fedoraproject.org>" \
       maintainer="fwilhe2"
 
@@ -27,6 +26,10 @@ RUN rm /missing-docs
 COPY extra-packages /
 RUN dnf -y install $(<extra-packages)
 RUN rm /extra-packages
+
+COPY extra-dev-packages /
+RUN dnf -y install $(<extra-dev-packages)
+RUN rm /extra-dev-packages
 
 COPY ensure-files /
 RUN ret_val=0; \

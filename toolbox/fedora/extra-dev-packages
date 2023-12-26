@@ -1,0 +1,14 @@
+ant
+cargo
+gcc
+gcc-c++
+golang
+java-17-openjdk
+java-17-openjdk-devel
+libxml2-devel
+make
+nodejs
+openssl-devel
+python3-pip
+rust
+yarnpkg
