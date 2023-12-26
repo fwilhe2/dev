@@ -1,0 +1,20 @@
+name: CI
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run ShellCheck
+      uses: ludeeus/action-shellcheck@master
+    - run: buildah build --tag=docker.io/fwilhe2/dev-fedora toolbox/fedora
+    - run: buildah build --tag=docker.io/fwilhe2/dev-debian toolbox/debian
+    - name: Log into DockerHub
+      run: echo "${{ secrets.DH_PAT }}" | buildah login -u fwilhe2 --password-stdin docker.io
+    - name: Push Fedora image
+      run: buildah push docker.io/fwilhe2/dev-fedora
+    - name: Push Debian image
+      run: buildah push docker.io/fwilhe2/dev-debian
