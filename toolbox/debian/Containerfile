@@ -29,7 +29,9 @@ COPY extra-dev-packages /
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install \
         libnss-myhostname \
-        $(cat extra*packages | xargs) && \
+        $(cat extra-packages | xargs) && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install \
+        $(cat extra-dev-packages | xargs) && \
     rm -rd /var/lib/apt/lists/*
 RUN rm /extra-packages /extra-dev-packages
 
