@@ -1,0 +1,8 @@
+mkosi --distribution=debian --profile=dev --force
+mkosi --distribution=debian --profile=dev qemu
+
+todo: make in image build, but how?
+
+useradd --user-group --create-home --shell=/usr/bin/bash user
+echo "%sudo ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/nopasswd
+usermod -aG sudo user
